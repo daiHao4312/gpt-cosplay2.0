@@ -1,5 +1,5 @@
 {
-    "gpt_model": "ChatGPT",
+    "gpt_model": "\u5f85\u5f00\u53d1",
     "openai_config": {
         "prompts_path": "./module/gpt_api/gpt_prompts/\u7231\u8389\u5e0c\u96c5.txt",
         "openai_api_key": "",
