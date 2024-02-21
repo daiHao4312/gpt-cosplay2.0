@@ -1,0 +1,59 @@
+#vitsTextBtn {
+    border-radius: 4px;
+    background: rgba(190, 130, 170, 0.5);
+    border: none;
+    color: #FFFFFF;
+    font-size: 13px;
+}
+
+#vitsTextBtn:hover {
+    background: rgba(100, 150, 185, 0.5);
+}
+
+#vitsTextClear {
+    border-radius: 4px;
+    background: rgba(190, 130, 170, 0.5);
+    border: none;
+    color: #FFFFFF;
+    font-size: 13px;
+}
+
+#vitsTextClear:hover {
+    background: rgba(100, 150, 185, 0.5);
+}
+
+#vitsModelBtn {
+    border-radius: 4px;
+    background: rgba(190, 130, 170, 0.5);
+    border: none;
+    color: #FFFFFF;
+    font-size: 13px;
+}
+
+#vitsModelBtn:hover {
+    background: rgba(100, 150, 185, 0.5);
+}
+
+#vitsTextInput {
+    background: rgba(197, 137, 178, 0.5);
+    border-radius: 10px;
+    color: #FFFFFF;
+    font-size: 13px;
+    padding: 6px;
+}
+
+#label_6 {
+    color: #BD4560;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+#label_8 {
+    color: #BD4560;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+#tab {
+    background: rgba(197, 137, 178, 0.5);
+}

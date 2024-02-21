@@ -1,0 +1,21 @@
+#tab {
+    background-color: #EA2543;
+}
+
+#label_5 {
+    color: #40333C;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+#gptModelChangeBtn {
+    border-radius: 4px;
+    background: rgba(14, 2, 2, 0.5);
+    border: none;
+    color: #FFFFFF;
+    font-size: 13px;
+}
+
+#gptModelChangeBtn:hover {
+    background: rgba(104, 52, 88, 0.5);
+}

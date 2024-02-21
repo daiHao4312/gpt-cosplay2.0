@@ -1,0 +1,81 @@
+QMainWindow {
+    background-image: url('./images/爱莉希雅.png');
+    background-repeat: no-repeat;
+    background-position: center top 50px;
+}
+
+#ChatList {
+    background: rgba(197, 137, 178, 0.5);
+    border-radius: 10px;
+}
+
+QListWidget::Item {
+    color: #FFFFFF;
+    padding: 3px;
+    font-size: 16px;
+}
+
+#ChatHistoryList {
+    background: rgba(197, 137, 178, 0.5);
+    border-radius: 10px;
+}
+
+#ChatHistoryBtn {
+    border-radius: 4px;
+    background: rgba(190, 130, 170, 0.5);
+    border: none;
+    color: #FFFFFF;
+    font-size: 13px;
+}
+
+#ChatHistoryBtn:hover {
+    background: rgba(100, 150, 185, 0.5);
+}
+
+#ChatHistoryDelBtn {
+    border-radius: 4px;
+    background: rgba(190, 130, 170, 0.5);
+    border: none;
+    color: #FFFFFF;
+    font-size: 13px;
+}
+
+#ChatHistoryDelBtn:hover {
+    background: rgba(100, 150, 185, 0.5);
+}
+
+#SeedBtn {
+    border-radius: 4px;
+    background: rgba(190, 130, 170, 0.5);
+    border: none;
+    color: #FFFFFF;
+    font-size: 13px;
+}
+
+#SeedBtn:hover {
+    background: rgba(100, 150, 185, 0.5);
+}
+
+#ChatListClearBtn {
+    border-radius: 4px;
+    background: rgba(190, 130, 170, 0.5);
+    border: none;
+    color: #FFFFFF;
+    font-size: 13px;
+}
+
+#ChatListClearBtn:hover {
+    background: rgba(100, 150, 185, 0.5);
+}
+
+#ChatInputText {
+    background: rgba(197, 137, 178, 0.5);
+    border-radius: 10px;
+    color: #FFFFFF;
+    font-size: 13px;
+    padding: 6px;
+}
+
+#ChatHistoryList {
+    font-size: 14px;
+}
