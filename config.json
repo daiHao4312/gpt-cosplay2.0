@@ -1,12 +1,13 @@
 {
-    "gpt_model": "\u5f85\u5f00\u53d1",
+    "gpt_model": "ChatGPT",
     "openai_config": {
         "prompts_path": "./module/gpt_api/gpt_prompts/\u7231\u8389\u5e0c\u96c5.txt",
         "openai_api_key": "",
         "openai_api_url": "",
-        "cosplay_role": "\u7231\u8389\u5e0c\u96c5"
+        "cosplay_role": "\u7231\u8389\u5e0c\u96c5",
+        "openai_chat_mode": "gpt-3.5-turbo"
     },
-    "vits_model": "\u65e0",
+    "vits_model": "vits",
     "vits_config": {
         "vits_api_url": "http://127.0.0.1:23456/voice/vits",
         "vits_wav_path": "./module/vits_api/vits_wav/vits_voice.wav",

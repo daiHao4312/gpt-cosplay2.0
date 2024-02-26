@@ -21,7 +21,7 @@ class Ui_Form(QWidget):
         Form.setObjectName("Form")
         Form.resize(738, 381)
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("./images/机器人.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        icon.addPixmap(QtGui.QPixmap("../images/机器人.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
         Form.setWindowIcon(icon)
         self.tabWidget = QtWidgets.QTabWidget(parent=Form)
         self.tabWidget.setGeometry(QtCore.QRect(50, 20, 641, 261))
@@ -50,22 +50,20 @@ class Ui_Form(QWidget):
         self.rolesInput.setGeometry(QtCore.QRect(410, 20, 201, 20))
         self.rolesInput.setObjectName("rolesInput")
         self.chatgptModifyBtn = QtWidgets.QPushButton(parent=self.tab)
-        self.chatgptModifyBtn.setGeometry(QtCore.QRect(190, 180, 75, 24))
+        self.chatgptModifyBtn.setGeometry(QtCore.QRect(370, 180, 75, 24))
         self.chatgptModifyBtn.setObjectName("chatgptModifyBtn")
-
-        # 修改gpt配置
-        self.chatgptModifyBtn.clicked.connect(self.gptConfigChange)
-
         self.chatgptRestoreDefaultValuesBtn = QtWidgets.QPushButton(parent=self.tab)
-        self.chatgptRestoreDefaultValuesBtn.setGeometry(QtCore.QRect(360, 180, 75, 24))
+        self.chatgptRestoreDefaultValuesBtn.setGeometry(QtCore.QRect(470, 180, 75, 24))
         self.chatgptRestoreDefaultValuesBtn.setObjectName("chatgptRestoreDefaultValuesBtn")
-
-        # 恢复默认值
-        self.chatgptRestoreDefaultValuesBtn.clicked.connect(self.RestoreDefaultValues)
-
         self.promptsComboBox = QtWidgets.QComboBox(parent=self.tab)
         self.promptsComboBox.setGeometry(QtCore.QRect(110, 20, 171, 22))
         self.promptsComboBox.setObjectName("promptsComboBox")
+        self.label_6 = QtWidgets.QLabel(parent=self.tab)
+        self.label_6.setGeometry(QtCore.QRect(20, 180, 71, 16))
+        self.label_6.setObjectName("label_6")
+        self.chatModeComboBox = QtWidgets.QComboBox(parent=self.tab)
+        self.chatModeComboBox.setGeometry(QtCore.QRect(110, 180, 171, 22))
+        self.chatModeComboBox.setObjectName("chatModeComboBox")
         self.tabWidget.addTab(self.tab, "")
         self.tab2 = QtWidgets.QWidget()
         self.tab2.setObjectName("tab2")
@@ -80,15 +78,11 @@ class Ui_Form(QWidget):
         self.gptModelChangeBtn.setGeometry(QtCore.QRect(450, 310, 75, 24))
         self.gptModelChangeBtn.setObjectName("gptModelChangeBtn")
 
-        # 设置gpt模型
-        self.gptModelChangeBtn.clicked.connect(self.setGptModel)
-
         self.retranslateUi(Form)
         self.tabWidget.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(Form)
 
-        # 设置样式表
-        self.addQss()
+        self.initToSetupUi()
 
     def retranslateUi(self, Form):
         _translate = QtCore.QCoreApplication.translate
@@ -101,6 +95,7 @@ class Ui_Form(QWidget):
         self.openaiUrlInput.setPlaceholderText(_translate("Form", "https://"))
         self.chatgptModifyBtn.setText(_translate("Form", "确定修改"))
         self.chatgptRestoreDefaultValuesBtn.setText(_translate("Form", "恢复默认值"))
+        self.label_6.setText(_translate("Form", "openai模型："))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab), _translate("Form", "ChatGPT"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab2), _translate("Form", "待开发"))
         self.label_5.setText(_translate("Form", "gpt模型选择："))
@@ -112,6 +107,23 @@ class Ui_Form(QWidget):
         pixmap = QPixmap("./images/卡芙卡.jpg")
         painter.drawPixmap(self.rect(), pixmap)
 
+    def initToSetupUi(self):
+        """
+        初始化设置
+        :return:
+        """
+
+        # 修改gpt配置
+        self.chatgptModifyBtn.clicked.connect(self.gptConfigChange)
+
+        # 恢复默认值
+        self.chatgptRestoreDefaultValuesBtn.clicked.connect(self.RestoreDefaultValues)
+
+        # 设置gpt模型
+        self.gptModelChangeBtn.clicked.connect(self.setGptModel)
+
+        # 设置样式表
+        self.addQss()
 
     def addQss(self):
         """
@@ -122,7 +134,6 @@ class Ui_Form(QWidget):
         qss_file = './qss/setGptStyle.qss'
         with open(qss_file, 'r') as f:
             self.setStyleSheet(f.read())
-
 
     def gptConfigInit(self):
         """
@@ -143,12 +154,20 @@ class Ui_Form(QWidget):
         self.rolesInput.setText(self.config_gpt_init.cosplay_role)
         self.promptsComboBox.setCurrentText(self.config_gpt_init.prompts_path.split("/")[-1])
 
+        # 获取openai模型
+        self.chatModeComboBox.clear()
+        self.chatModeComboBox.addItem("gpt-3.5-turbo")
+        self.chatModeComboBox.addItem("gpt-4.0-chat")
+        self.chatModeComboBox.setCurrentText(self.config_gpt_init.openai_chat_mode)
+
         # 获取gpt模型
         self.gptModelComboBox.clear()
         for i in range(self.tabWidget.count()):
             tab_name = self.tabWidget.tabText(i)
             self.gptModelComboBox.addItem(tab_name)
         self.gptModelComboBox.setCurrentText(self.config_gpt_init.gpt_model)
+
+
 
     def RestoreDefaultValues(self):
         """
@@ -164,11 +183,11 @@ class Ui_Form(QWidget):
         if reply == QMessageBox.StandardButton.No:
             return
         else:
-            self.openaiKeyInput.setText("sk-FcRwry8b7CxfTvLrmx2n0BQuvOAiCAmXDvPBiCZbCUVHrLPB")
-            self.openaiUrlInput.setText("http://api.chatanywhere.cn")
+            self.openaiKeyInput.setText("")
+            self.openaiUrlInput.setText("")
             self.rolesInput.setText("爱莉希雅")
             self.promptsComboBox.setCurrentText("爱莉希雅.txt")
-
+            self.chatModeComboBox.setCurrentText("gpt-3.5-turbo")
 
     def gptConfigChange(self):
         """
@@ -189,10 +208,11 @@ class Ui_Form(QWidget):
             openai_api_url_input = self.openaiUrlInput.text()
             cosplay_role_input = self.rolesInput.text()
             prompts_path_input = r"./module/gpt_api/gpt_prompts/" + self.promptsComboBox.currentText()
+            openai_chat_mode_input = self.chatModeComboBox.currentText()
 
-            config.set_gpt_config_change(openai_api_key_input, openai_api_url_input, cosplay_role_input, prompts_path_input)
+            config.set_gpt_config_change(openai_api_key_input, openai_api_url_input, cosplay_role_input,
+                                         prompts_path_input, openai_chat_mode_input)
             self.gptConfigInit()
-
 
     def setGptModel(self):
         """

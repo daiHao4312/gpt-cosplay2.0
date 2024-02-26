@@ -16,6 +16,7 @@ class Config:
         self.database_path = ""
         self.vits_model = ""
         self.gpt_model = ""
+        self.openai_chat_mode = ""
         self.read_config()
 
 
@@ -32,6 +33,7 @@ class Config:
         self.openai_api_key = openai_config.get("openai_api_key", "")
         self.openai_api_url = openai_config.get("openai_api_url", "")
         self.cosplay_role = openai_config.get("cosplay_role", "")
+        self.openai_chat_mode = openai_config.get("openai_chat_mode", "")
 
         self.vits_model = config.get("vits_model", "")
         self.vits_api_url = vits_config.get("vits_api_url", "")
@@ -94,7 +96,7 @@ def vits_model_change(vits_model):
     return config
 
 
-def set_gpt_config_change(openai_api_key_input, openai_api_url_input, cosplay_role_input, prompts_path_input):
+def set_gpt_config_change(openai_api_key_input, openai_api_url_input, cosplay_role_input, prompts_path_input, openai_chat_mode_input):
     """
     修改gpt配置
     :param openai_api_key_input: openai的key
@@ -109,6 +111,7 @@ def set_gpt_config_change(openai_api_key_input, openai_api_url_input, cosplay_ro
     config.openai_api_url = openai_api_url_input
     config.cosplay_role = cosplay_role_input
     config.prompts_path = prompts_path_input
+    config.openai_chat_mode = openai_chat_mode_input
 
     with open("config.json", "r") as json_file:
         config_data = json.load(json_file)
@@ -116,6 +119,7 @@ def set_gpt_config_change(openai_api_key_input, openai_api_url_input, cosplay_ro
         config_data["openai_config"]["openai_api_url"] = config.openai_api_url
         config_data["openai_config"]["cosplay_role"] = config.cosplay_role
         config_data["openai_config"]["prompts_path"] = config.prompts_path
+        config_data["openai_config"]["openai_chat_mode"] = config.openai_chat_mode
 
     with open("config.json", "w") as json_file:
         json.dump(config_data, json_file, indent=4)

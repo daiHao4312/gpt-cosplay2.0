@@ -32,9 +32,6 @@ class Ui_Form(QWidget):
         self.vitsTextBtn.setGeometry(QtCore.QRect(270, 100, 75, 24))
         self.vitsTextBtn.setObjectName("vitsTextBtn")
 
-        # 绑定试听按钮
-        self.vitsTextBtn.clicked.connect(self.showVits)
-
         self.label_6 = QtWidgets.QLabel(parent=self.groupBox_2)
         self.label_6.setGeometry(QtCore.QRect(40, 20, 61, 16))
         self.label_6.setObjectName("label_6")
@@ -51,9 +48,6 @@ class Ui_Form(QWidget):
         self.vitsTextClear = QtWidgets.QPushButton(parent=self.groupBox_2)
         self.vitsTextClear.setGeometry(QtCore.QRect(400, 100, 75, 24))
         self.vitsTextClear.setObjectName("vitsTextClear")
-
-        # 绑定清空按钮
-        self.vitsTextClear.clicked.connect(self.TextClear)
 
         self.tabWidget = QtWidgets.QTabWidget(parent=Form)
         self.tabWidget.setGeometry(QtCore.QRect(70, 20, 741, 211))
@@ -95,15 +89,9 @@ class Ui_Form(QWidget):
         self.vitsModifyBtn.setGeometry(QtCore.QRect(260, 150, 75, 24))
         self.vitsModifyBtn.setObjectName("vitsModifyBtn")
 
-        # 绑定确认修改按钮
-        self.vitsModifyBtn.clicked.connect(self.vitsConfigChange)
-
         self.vitsRestoreDefaultValuesBtn = QtWidgets.QPushButton(parent=self.tab)
         self.vitsRestoreDefaultValuesBtn.setGeometry(QtCore.QRect(420, 150, 75, 24))
         self.vitsRestoreDefaultValuesBtn.setObjectName("vitsRestoreDefaultValuesBtn")
-
-        # 绑定恢复默认值按钮
-        self.vitsRestoreDefaultValuesBtn.clicked.connect(self.RestoreDefaultValues)
 
         self.tabWidget.addTab(self.tab, "")
         self.tab2 = QtWidgets.QWidget()
@@ -119,15 +107,12 @@ class Ui_Form(QWidget):
         self.vitsModelComboBox.setGeometry(QtCore.QRect(330, 410, 161, 22))
         self.vitsModelComboBox.setObjectName("vitsModelComboBox")
 
-        # 绑定完成按钮
-        self.vitsModelBtn.clicked.connect(self.setVitsModel)
-
         self.retranslateUi(Form)
         self.tabWidget.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(Form)
 
-        # 添加样式表
-        self.addQss()
+        # 初始化设置
+        self.initToSetupUi()
 
     def retranslateUi(self, Form):
         _translate = QtCore.QCoreApplication.translate
@@ -153,6 +138,29 @@ class Ui_Form(QWidget):
         painter = QPainter(self)
         pixmap = QPixmap("./images/爱莉希雅2.jpg")
         painter.drawPixmap(self.rect(), pixmap)
+
+    def initToSetupUi(self):
+        """
+        初始化设置
+        :return:
+        """
+        # 绑定试听按钮
+        self.vitsTextBtn.clicked.connect(self.showVits)
+
+        # 绑定清空按钮
+        self.vitsTextClear.clicked.connect(self.TextClear)
+
+        # 绑定确认修改按钮
+        self.vitsModifyBtn.clicked.connect(self.vitsConfigChange)
+
+        # 绑定恢复默认值按钮
+        self.vitsRestoreDefaultValuesBtn.clicked.connect(self.RestoreDefaultValues)
+
+        # 绑定完成按钮
+        self.vitsModelBtn.clicked.connect(self.setVitsModel)
+
+        # 添加样式表
+        self.addQss()
 
     def vitsConfigInit(self):
         """

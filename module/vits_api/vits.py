@@ -9,6 +9,7 @@ import config
 
 class VITSThread(QThread):
     transcription_complete = pyqtSignal()
+    error_occurred = pyqtSignal(str)
 
     def __init__(self, text, id="225", lang="zh", length="1.4"):
         super().__init__()
@@ -17,10 +18,12 @@ class VITSThread(QThread):
         self.lang = lang
         self.length = length
         self.config_vits_wav_path = config.Config()
+        self.error_flag = False
 
     def run(self):
         self.vits_textToVodie()
-        self.play_audio()
+        if not self.error_flag:
+            self.play_audio()
         self.transcription_complete.emit()
 
     def vits_textToVodie(self):
@@ -33,15 +36,22 @@ class VITSThread(QThread):
             "length": self.length,
         }
 
-        response = requests.get(url, params=params)
+        try:
+            response = requests.get(url, params=params)
 
-        if response.status_code == 200:
-            audio_data = response.content
-            with open(self.config_vits_wav_path.vits_wav_path, "wb") as f:
-                f.write(audio_data)
-            print("音频文件已保存")
-        else:
-            print("请求失败，状态码为", response.status_code)
+            if response.status_code == 200:
+                audio_data = response.content
+                with open(self.config_vits_wav_path.vits_wav_path, "wb") as f:
+                    f.write(audio_data)
+                print("音频文件已保存")
+            else:
+                print("请求失败，状态码为", response.status_code)
+                return
+        except Exception as e:
+            print(e)
+            # 弹出提示框
+            self.error_flag = True
+            self.error_occurred.emit("请求失败，请检查vits连接！")
             return
 
     def play_audio(self):

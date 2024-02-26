@@ -1,7 +1,6 @@
 import openai
 
 import config
-# from config import prompts_path, openai_api_key, openai_api_url, cosplay_role
 
 
 
@@ -12,11 +11,16 @@ def init_chat():
     初始化对话
     :return:
     """
+    global messages
     config_openai = config.Config()
+
+    if config_openai.openai_api_key == "":
+        print("请在config.json中填写openai的api_key")
+        return 0
 
     openai.api_key = config_openai.openai_api_key
     openai.api_base = config_openai.openai_api_url
-    global messages
+
     # 从文本文件中读取提示词
     with open(config_openai.prompts_path, "r", encoding="utf-8") as file:
         prompts = file.read().splitlines()
@@ -42,21 +46,27 @@ def chatgpt(user_input):
     # 添加用户输入到对话中
     messages.append({"role": "user", "content": user_input})
 
-    # 调用OpenAI聊天模型
-    completion = openai.ChatCompletion.create(
-        model="gpt-3.5-turbo",
-        messages=messages
-    )
+    try:
+        openai_mode = config.Config()
 
-    # 获取模型的回复消息
-    model_reply = completion.choices[0].message
+        # 调用OpenAI聊天模型
+        completion = openai.ChatCompletion.create(
+            model=openai_mode.openai_chat_mode,  # gpt-4.0-chat
+            messages=messages
+        )
 
-    # 添加模型回复到对话中
-    messages.append(model_reply)
+        # 获取模型的回复消息
+        model_reply = completion.choices[0].message
 
-    # 输出模型回复
-    print("Assistant:", model_reply["content"])
-    return model_reply["content"]
+        # 添加模型回复到对话中
+        messages.append(model_reply)
+
+        # 输出模型回复
+        print("Assistant:", model_reply["content"])
+        return model_reply["content"]
+    except Exception as e:
+        print(e)
+        return f"请求失败，{e}"
 
 # 结束对话
 def end_chat():
