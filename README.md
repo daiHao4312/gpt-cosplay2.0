@@ -23,6 +23,8 @@
 ### 软件使用说明
 1. 可以在[Release](https://github.com/daiHao4312/gpt-cosplay2.0/releases/tag/v2.0.1)页面下载最新的版本。
 2. 本项目是直接打包之后的，所以不需要安装python环境，直接双击exe文件就可以运行了。
+3. 如果不想直接下载打包版本，可以直接拷贝代码到本地，然后安装依赖，然后运行```main.py```文件就可以了。
+4. 所有的依赖都在```requirements.txt```里面，可以直接用```pip install -r requirements.txt```安装。
 
 #### 主界面
 ![img.png](README/img.png)
@@ -49,6 +51,26 @@
 - **修改：** 点击确认修改就行了。
 - **选择prompts：** 你需要自己导入prompt，然后选择一个就可以了。 路径：```module/gpt_api/gpt_prompts```
 - txt文件里一行就是一段话，切记每一句要换行，不让一句太多。太多会爆炸的。
+
+
+##### 恢复默认值（在前面的设置中有默认设置的按钮）
+1. 默认设置是作者已经定死了的，如果想修改只能去源代码里面修改了。
+2. gpt默认设置在```setting/set_gpt/setGptConfig.py```里面，可以自己修改。在函数```RestoreDefaultValues```里面修改。
+```python
+            self.openaiKeyInput.setText("")
+            self.openaiUrlInput.setText("")
+            self.rolesInput.setText("爱莉希雅")
+            self.promptsComboBox.setCurrentText("爱莉希雅.txt")
+            self.chatModeComboBox.setCurrentText("gpt-3.5-turbo")
+```
+3. vits默认设置在```setting/set_vits/setVitsConfig.py```里面，可以自己修改。在函数```RestoreDefaultValues```里面修改。
+```python
+            self.vitsIdInput.setText("225")
+            self.vitsLangInput.setText("zh")
+            self.vitsLengthInput.setText("1.4")
+            self.vitsApiInput.setText("http://127.0.0.1:23456/voice/vits")
+            self.vitsWavPathInput.setText("./module/vits_api/vits_wav/vits_voice.wav")
+```
 
 #### 结语
 - 本项目是我自己开发的，所以可能有很多bug，如果有什么问题的话，可以在github上提issue，我会尽快解决的。
