@@ -15,6 +15,14 @@
         "vits_lang": "zh",
         "vits_length": "1.4"
     },
+    "gptSoVits_config": {
+        "gptSoVits_api_url": "http://127.0.0.1:23456/voice/gpt-sovits",
+        "gptSoVits_wav_path": "./module/vits_api/vits_wav/vits_voice.wav",
+        "gptSoVits_id": "0",
+        "gptSoVits_lang": "auto",
+        "gptSoVits_prompt_lang": "auto",
+        "gptSoVits_preset": "default"
+    },
     "voice_wav_path": "./module/voice_recognition/VoiceToText_wav/recorded_audio.wav",
     "input_mode": "text",
     "database_path": "./database/chat.db"

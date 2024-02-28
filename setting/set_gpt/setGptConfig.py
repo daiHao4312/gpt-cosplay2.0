@@ -21,7 +21,7 @@ class Ui_Form(QWidget):
         Form.setObjectName("Form")
         Form.resize(738, 381)
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("../images/机器人.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        icon.addPixmap(QtGui.QPixmap("./images/机器人.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
         Form.setWindowIcon(icon)
         self.tabWidget = QtWidgets.QTabWidget(parent=Form)
         self.tabWidget.setGeometry(QtCore.QRect(50, 20, 641, 261))

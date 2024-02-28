@@ -18,6 +18,7 @@
 3. 关于vits的api，可以参考这个[vits-simple-api](https://github.com/Artrajz/vits-simple-api)项目。可以自己部署到本地或者服务器上，然后把地址改成自己的地址。本项目默认的是本地的地址。
 
 ### 软件版本
+* **2.0.2:** 修复了gpt设置图标显示的问题。添加了vits设置中的GPT-SoVITS模型，可以直接在vits模型选择那里切换了。（tip：GPT-SoVITS模型生成语音的速度要慢一点，效果通常比vits更好）
 * **2.0.1:** 稳定版，修改了一些恶性bug--配置不当导致软件闪退。增加chatgpt的版本，以前只能是3.5，这次增加了4.0的版本，可以自由切换。
 
 ### 软件使用说明
@@ -45,6 +46,10 @@
 - **试听：** 修改后可以在这里试听一下。输入什么会读什么。
 - **选择模型：** 没有vits模型的时候记得选无。
 
+##### GPT-SoVITS设置
+![img_3.png](README/img_3.png)
+- **修改：** 点击确认修改就行了。
+
 ##### gpt设置
 ![img_2.png](README/img_2.png)
 
@@ -56,7 +61,7 @@
 ##### 恢复默认值（在前面的设置中有默认设置的按钮）
 1. 默认设置是作者已经定死了的，如果想修改只能去源代码里面修改了。
 2. gpt默认设置在```setting/set_gpt/setGptConfig.py```里面，可以自己修改。在函数```RestoreDefaultValues```里面修改。
-```python
+```
             self.openaiKeyInput.setText("")
             self.openaiUrlInput.setText("")
             self.rolesInput.setText("爱莉希雅")
@@ -64,12 +69,21 @@
             self.chatModeComboBox.setCurrentText("gpt-3.5-turbo")
 ```
 3. vits默认设置在```setting/set_vits/setVitsConfig.py```里面，可以自己修改。在函数```RestoreDefaultValues```里面修改。
-```python
+```
             self.vitsIdInput.setText("225")
             self.vitsLangInput.setText("zh")
             self.vitsLengthInput.setText("1.4")
             self.vitsApiInput.setText("http://127.0.0.1:23456/voice/vits")
             self.vitsWavPathInput.setText("./module/vits_api/vits_wav/vits_voice.wav")
+```
+4. GPT-SoVITS默认设置在```setting/set_vits/setVitsConfig.py```里面，可以自己修改。在函数```gptSoVitsRestoreDefaultValues```里面修改。
+```
+            self.gptSoVitsIdInput.setText("0")
+            self.gptSoVitsLangInput.setText("auto")
+            self.gptSoVitsPresetInput.setText("default")
+            self.gptSoVitsPromptLangInput.setText("auto")
+            self.gptSoVitsApiInput.setText("http://127.0.0.1:23456/voice/gpt-sovits")
+            self.gptSoVitsWavPathInput.setText("./module/vits_api/vits_wav/vits_voice.wav")
 ```
 
 #### 结语

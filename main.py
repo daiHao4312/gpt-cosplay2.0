@@ -8,7 +8,7 @@ import config
 from dao import chatDao
 from entity import chatModel
 from module.gpt_api import openAI
-from module.vits_api import vits
+from module.vits_api import vits, gptSoVits
 from module.voice_recognition import voice_to_text
 from setting.set_gpt import setGptConfig
 from setting.set_vits import setVitsConfig
@@ -342,7 +342,7 @@ class Ui_MainWindow(QMainWindow):
         self.ChatInputText.clear()  # 清空输入框
         try:
             config_vits_model_init = config.Config()
-            if config_vits_model_init.vits_model == 'vits':
+            if config_vits_model_init.vits_model == 'vits' or config_vits_model_init.vits_model == 'GPT-SoVITS':
                 self.textToAudio(assistantChat)  # 文字转语音
                 self.LuYingFlag.setText("等待中...")
             elif config_vits_model_init.vits_model == '无':
@@ -464,6 +464,21 @@ class Ui_MainWindow(QMainWindow):
                 QtWidgets.QMessageBox.warning(None, "警告", "文字转语音失败！")
                 print(e)
                 return
+
+        elif config_vits.vits_model == "GPT-SoVITS":
+            try:
+                self.GptSoVitsThread = gptSoVits.GptSoVitsThread(text, config_vits.gptSoVits_id,
+                                                                 config_vits.gptSoVits_lang,
+                                                                 config_vits.gptSoVits_prompt_lang,
+                                                                 config_vits.gptSoVits_preset)
+                self.GptSoVitsThread.start()
+                self.GptSoVitsThread.transcription_complete_gptsovits.connect(self.on_transcription_complete)
+                self.GptSoVitsThread.error_occurred_gptsovits.connect(self.handle_error)
+            except Exception as e:
+                QtWidgets.QMessageBox.warning(None, "警告", "文字转语音失败！")
+                print(e)
+                return
+
         else:
             QMessageBox.warning(None, "警告", "请先选择vits模型！")
             return

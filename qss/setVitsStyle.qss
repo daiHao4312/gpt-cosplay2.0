@@ -57,3 +57,7 @@
 #tab {
     background: rgba(197, 137, 178, 0.5);
 }
+
+#tab2 {
+    background: #CC9AE3;
+}

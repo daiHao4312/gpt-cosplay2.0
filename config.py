@@ -6,17 +6,28 @@ class Config:
         self.openai_api_key = ""
         self.openai_api_url = ""
         self.cosplay_role = ""
+
         self.vits_api_url = ""
         self.vits_wav_path = ""
         self.vits_id = ""
         self.vits_lang = ""
         self.vits_length = ""
+
         self.voice_wav_path = ""
         self.input_mode = ""
         self.database_path = ""
+
         self.vits_model = ""
         self.gpt_model = ""
         self.openai_chat_mode = ""
+
+        self.gptSoVits_id = ""
+        self.gptSoVits_lang = ""
+        self.gptSoVits_preset = ""
+        self.gptSoVits_prompt_lang = ""
+        self.gptSoVits_api_url = ""
+        self.gptSoVits_wav_path = ""
+
         self.read_config()
 
 
@@ -27,6 +38,7 @@ class Config:
 
         openai_config = config.get("openai_config", {})
         vits_config = config.get("vits_config", {})
+        gptSoVits_config = config.get("gptSoVits_config", {})
 
         self.gpt_model = config.get("gpt_model", "")
         self.prompts_path = openai_config.get("prompts_path", "")
@@ -41,6 +53,13 @@ class Config:
         self.vits_id = vits_config.get("vits_id", "")
         self.vits_lang = vits_config.get("vits_lang", "")
         self.vits_length = vits_config.get("vits_length", "")
+
+        self.gptSoVits_id = gptSoVits_config.get("gptSoVits_id", "")
+        self.gptSoVits_lang = gptSoVits_config.get("gptSoVits_lang", "")
+        self.gptSoVits_preset = gptSoVits_config.get("gptSoVits_preset", "")
+        self.gptSoVits_prompt_lang = gptSoVits_config.get("gptSoVits_prompt_lang", "")
+        self.gptSoVits_api_url = gptSoVits_config.get("gptSoVits_api_url", "")
+        self.gptSoVits_wav_path = gptSoVits_config.get("gptSoVits_wav_path", "")
 
         self.voice_wav_path = config.get("voice_wav_path", "")
         self.input_mode = config.get("input_mode", "")
@@ -72,6 +91,41 @@ def set_vits_config_change(vits_id_input, vits_lang_input, vits_length_input, vi
         config_data["vits_config"]["vits_id"] = config.vits_id
         config_data["vits_config"]["vits_lang"] = config.vits_lang
         config_data["vits_config"]["vits_length"] = config.vits_length
+
+    with open("config.json", "w") as json_file:
+        json.dump(config_data, json_file, indent=4)
+
+    return config
+
+
+def set_gptSoVits_config_change(gptSoVits_id_input, gptSoVits_lang_input, gptSoVits_preset_input, gptSoVits_prompt_lang_input, gptSoVits_api_input, gptSoVits_wav_path_input):
+    """
+    修改gptSoVits配置
+    :param gptSoVits_id_input: GPTSoVits的id
+    :param gptSoVits_lang_input: GPTSoVits的文本语言
+    :param gptSoVits_preset_input: GPTSoVits的预设音频
+    :param gptSoVits_prompt_lang_input: GPTSoVits的语言类型
+    :param gptSoVits_api_input: GPTSoVits的api地址
+    :param gptSoVits_wav_path_input: GPTSoVits的wav路径
+    :return:
+    """
+    config = Config()
+
+    config.gptSoVits_id = gptSoVits_id_input
+    config.gptSoVits_lang = gptSoVits_lang_input
+    config.gptSoVits_preset = gptSoVits_preset_input
+    config.gptSoVits_prompt_lang = gptSoVits_prompt_lang_input
+    config.gptSoVits_api_url = gptSoVits_api_input
+    config.gptSoVits_wav_path = gptSoVits_wav_path_input
+
+    with open("config.json", "r") as json_file:
+        config_data = json.load(json_file)
+        config_data["gptSoVits_config"]["gptSoVits_id"] = config.gptSoVits_id
+        config_data["gptSoVits_config"]["gptSoVits_lang"] = config.gptSoVits_lang
+        config_data["gptSoVits_config"]["gptSoVits_preset"] = config.gptSoVits_preset
+        config_data["gptSoVits_config"]["gptSoVits_prompt_lang"] = config.gptSoVits_prompt_lang
+        config_data["gptSoVits_config"]["gptSoVits_api_url"] = config.gptSoVits_api_url
+        config_data["gptSoVits_config"]["gptSoVits_wav_path"] = config.gptSoVits_wav_path
 
     with open("config.json", "w") as json_file:
         json.dump(config_data, json_file, indent=4)

@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>869</width>
+    <height>528</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>主界面</string>
+  </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>../images/鹤木阳渚.png</normaloff>../images/鹤木阳渚.png</iconset>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QListWidget" name="ChatList">
+    <property name="geometry">
+     <rect>
+      <x>70</x>
+      <y>10</y>
+      <width>561</width>
+      <height>341</height>
+     </rect>
+    </property>
+    <property name="wordWrap">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="SeedBtn">
+    <property name="geometry">
+     <rect>
+      <x>570</x>
+      <y>370</y>
+      <width>61</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>发送</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="SaidBtn">
+    <property name="geometry">
+     <rect>
+      <x>290</x>
+      <y>450</y>
+      <width>75</width>
+      <height>24</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>语音</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="ChatListClearBtn">
+    <property name="geometry">
+     <rect>
+      <x>570</x>
+      <y>410</y>
+      <width>71</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>清除对话</string>
+    </property>
+   </widget>
+   <widget class="QTextEdit" name="ChatInputText">
+    <property name="geometry">
+     <rect>
+      <x>70</x>
+      <y>370</y>
+      <width>491</width>
+      <height>71</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>720</x>
+      <y>10</y>
+      <width>71</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>微软雅黑</family>
+      <pointsize>12</pointsize>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="text">
+     <string>历史记录</string>
+    </property>
+   </widget>
+   <widget class="QListWidget" name="ChatHistoryList">
+    <property name="geometry">
+     <rect>
+      <x>670</x>
+      <y>40</y>
+      <width>171</width>
+      <height>192</height>
+     </rect>
+    </property>
+    <property name="wordWrap">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="ChatHistoryBtn">
+    <property name="geometry">
+     <rect>
+      <x>670</x>
+      <y>250</y>
+      <width>75</width>
+      <height>24</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>选定记录</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="ChatHistoryDelBtn">
+    <property name="geometry">
+     <rect>
+      <x>770</x>
+      <y>250</y>
+      <width>75</width>
+      <height>24</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>删除记录</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="LuYingFlag">
+    <property name="geometry">
+     <rect>
+      <x>390</x>
+      <y>450</y>
+      <width>91</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>869</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menu">
+    <property name="title">
+     <string>设置</string>
+    </property>
+    <addaction name="actionvits"/>
+    <addaction name="actiongpt"/>
+   </widget>
+   <widget class="QMenu" name="menu_2">
+    <property name="title">
+     <string>帮助</string>
+    </property>
+    <addaction name="action"/>
+    <addaction name="actiongithub"/>
+   </widget>
+   <addaction name="menu"/>
+   <addaction name="menu_2"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <action name="actionvits">
+   <property name="icon">
+    <iconset>
+     <normaloff>../images/语音识别.png</normaloff>../images/语音识别.png</iconset>
+   </property>
+   <property name="text">
+    <string>vits设置</string>
+   </property>
+  </action>
+  <action name="actiongpt">
+   <property name="icon">
+    <iconset>
+     <normaloff>../images/机器人.png</normaloff>../images/机器人.png</iconset>
+   </property>
+   <property name="text">
+    <string>gpt设置</string>
+   </property>
+  </action>
+  <action name="action">
+   <property name="icon">
+    <iconset>
+     <normaloff>../images/作者.png</normaloff>../images/作者.png</iconset>
+   </property>
+   <property name="text">
+    <string>作者</string>
+   </property>
+  </action>
+  <action name="actiongithub">
+   <property name="icon">
+    <iconset>
+     <normaloff>../images/github.png</normaloff>../images/github.png</iconset>
+   </property>
+   <property name="text">
+    <string>github</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
