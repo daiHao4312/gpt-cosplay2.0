@@ -22,7 +22,7 @@
 * **2.0.1:** 稳定版，修改了一些恶性bug--配置不当导致软件闪退。增加chatgpt的版本，以前只能是3.5，这次增加了4.0的版本，可以自由切换。
 
 ### 软件使用说明
-1. 可以在[Release](https://github.com/daiHao4312/gpt-cosplay2.0/releases/tag/v2.0.1)页面下载最新的版本。
+1. 可以在[Release](https://github.com/daiHao4312/gpt-cosplay2.0/releases)页面下载最新的版本。
 2. 本项目是直接打包之后的，所以不需要安装python环境，直接双击exe文件就可以运行了。
 3. 如果不想直接下载打包版本，可以直接拷贝代码到本地，然后安装依赖，然后运行```main.py```文件就可以了。
 4. 所有的依赖都在```requirements.txt```里面，可以直接用```pip install -r requirements.txt```安装。
